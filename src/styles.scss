@@ -1,1 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body {
+  @apply bg-zinc-950;
+  height: 100%;
+  margin: 0;
+  color: theme('colors.zinc.100');
+}
+
+:root {
+  color-scheme: dark;
+}
+
+@layer base {
+  html {
+    @apply bg-zinc-950;
+  }
+  body {
+    @apply bg-zinc-950 text-white min-h-screen;
+  }
+}

@@ -1,0 +1,36 @@
+<div class="relative group cursor-pointer" (click)="onCardClick()">
+  <div class="aspect-square overflow-hidden rounded-lg bg-zinc-800">
+    <img
+      [src]="getImage()"
+      [alt]="getName()"
+      class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+      loading="lazy"
+      (error)="handleImageError($event)"
+    >
+  </div>
+  <div class="mt-4">
+    <h3 class="text-lg font-semibold text-zinc-200 truncate">{{ getName() }}</h3>
+    <ng-container *ngIf="type === 'album' && isAlbum(item)">
+      <div class="text-xs text-zinc-400" *ngIf="item.artists?.length > 0">
+        {{ getArtistName(item.artists[0]) }}
+        <span *ngIf="item.yearRelease" class="ml-1">({{ item.yearRelease }})</span>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="type === 'artist' && isArtist(item)">
+      <div class="text-xs text-zinc-400" *ngIf="item.instruments?.length > 0">
+        {{ item.instruments.join(', ') }}
+      </div>
+    </ng-container>
+    <ng-container *ngIf="type === 'band' && isBand(item)">
+      <div class="text-xs text-zinc-400" *ngIf="item.members?.length > 0">
+        {{ item.members.length }} members
+      </div>
+    </ng-container>
+    <ng-container *ngIf="type === 'genre' && isGenre(item)">
+      <div class="text-xs text-zinc-400" *ngIf="item.bands?.length > 0">
+        {{ item.bands.length }} bands
+      </div>
+    </ng-container>
+    <p class="text-sm text-zinc-500 truncate">{{ type | titlecase }}</p>
+  </div>
+</div>

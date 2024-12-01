@@ -1,0 +1,17 @@
+:host {
+  display: block;
+  min-height: 100vh;
+  background-color: rgb(9 9 11);
+}
+
+aside {
+  height: 100vh;
+  overflow-y: auto;
+  background-color: rgba(24, 24, 27, 0.95);
+  border-right: 1px solid rgb(39, 39, 42);
+}
+
+main {
+  min-height: 100vh;
+  background-color: rgb(9 9 11);
+}

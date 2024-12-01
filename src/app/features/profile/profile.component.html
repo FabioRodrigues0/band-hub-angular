@@ -1,0 +1,231 @@
+<div class="min-h-screen bg-zinc-900 py-8">
+  <div class="container mx-auto px-4">
+    <div *ngIf="isLoading" class="flex justify-center items-center h-64">
+      <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+    </div>
+
+    <div *ngIf="error" class="text-red-500 text-center py-4">
+      {{ error }}
+    </div>
+
+    <div *ngIf="user && !isLoading" class="max-w-4xl mx-auto bg-zinc-800 rounded-xl shadow-xl p-8">
+      <!-- Profile Header -->
+      <div class="flex flex-col md:flex-row items-center gap-8 mb-8 border-b border-zinc-700 pb-8">
+        <div class="relative w-32 h-32 group">
+          <img
+            [src]="user.image || 'assets/images/default-profile.png'"
+            [alt]="user.name"
+            class="w-32 h-32 rounded-full object-cover"
+            (error)="handleImageError($event)"
+          >
+          <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+            <label
+              class="w-full h-full flex items-center justify-center bg-black bg-opacity-50 rounded-full cursor-pointer"
+              [class.cursor-not-allowed]="imageUploading"
+            >
+              <input
+                type="file"
+                class="hidden"
+                accept="image/*"
+                (change)="updateProfileImage($event)"
+                [disabled]="imageUploading"
+              >
+              <span class="text-white text-sm">
+                {{ imageUploading ? 'Uploading...' : 'Change Photo' }}
+              </span>
+            </label>
+          </div>
+          <button
+            *ngIf="user.image"
+            (click)="removeProfileImage()"
+            class="absolute -top-2 -right-2 bg-red-500 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity"
+            title="Remove photo"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+            </svg>
+          </button>
+        </div>
+
+        <div class="flex-1 text-center md:text-left">
+          <h1 class="text-3xl font-bold mb-2 text-zinc-100">{{ user.name }}</h1>
+          <p class="text-zinc-400 mb-4">{{ user.bio || 'No bio yet' }}</p>
+
+          <div class="flex flex-wrap justify-center md:justify-start items-center gap-6 mb-6">
+            <div class="text-center">
+              <div class="font-semibold text-zinc-100">{{ user.followers || 0 }}</div>
+              <div class="text-xs text-zinc-400">Followers</div>
+            </div>
+            <div class="text-center">
+              <div class="font-semibold text-zinc-100">{{ user.following || 0 }}</div>
+              <div class="text-xs text-zinc-400">Following</div>
+            </div>
+            <div class="text-center">
+              <div class="font-semibold text-zinc-100">{{ user.playlists || 0 }}</div>
+              <div class="text-xs text-zinc-400">Playlists</div>
+            </div>
+          </div>
+
+          <button
+            (click)="openEditDrawer()"
+            class="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors shadow-lg"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
+            </svg>
+            Edit Profile
+          </button>
+        </div>
+      </div>
+
+      <!-- Favorite Genres -->
+      <div class="mb-8">
+        <h2 class="text-xl font-semibold mb-4 text-zinc-100">Favorite Genres</h2>
+        <div class="flex flex-wrap gap-2">
+          <div
+            *ngFor="let genre of (user.favoriteGenres || [])"
+            class="px-3 py-1 bg-zinc-700 text-zinc-300 rounded-full text-sm hover:bg-zinc-600 transition-colors"
+          >
+            {{ genre }}
+          </div>
+          <div *ngIf="!user.favoriteGenres?.length" class="text-zinc-500 text-sm">
+            No favorite genres added yet
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Playlist Sections -->
+    <div *ngIf="user && !isLoading" class="max-w-7xl mx-auto mt-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div *ngFor="let section of playlistSections" class="bg-zinc-800 rounded-lg p-6">
+          <h3 class="text-xl font-semibold text-zinc-100 mb-2">{{ section.title }}</h3>
+          <p class="text-zinc-400 text-sm mb-4">{{ section.description }}</p>
+          
+          <div *ngIf="section.playlists.length === 0" class="text-center py-8">
+            <div class="text-zinc-500 mb-2">No playlists yet</div>
+            <button 
+              class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm"
+              (click)="createPlaylist(section.title)"
+            >
+              Create Playlist
+            </button>
+          </div>
+
+          <div *ngIf="section.playlists.length > 0" class="space-y-4">
+            <div *ngFor="let playlist of section.playlists" class="bg-zinc-700 rounded-lg p-4">
+              <div class="flex items-center gap-3">
+                <img 
+                  [src]="playlist.coverImage || 'assets/images/default-playlist.png'" 
+                  [alt]="playlist.title"
+                  class="w-12 h-12 rounded object-cover"
+                >
+                <div class="flex-1 min-w-0">
+                  <h4 class="text-zinc-100 font-medium truncate">{{ playlist.title }}</h4>
+                  <p class="text-zinc-400 text-sm truncate">{{ playlist.tracks.length || 0 }} tracks</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Edit Profile Drawer -->
+<app-drawer
+  [isOpen]="drawerOpen"
+  (close)="closeEditDrawer()"
+>
+  <div class="p-6">
+    <h2 class="text-2xl font-bold mb-6">Edit Profile</h2>
+
+    <form [formGroup]="profileForm" (ngSubmit)="saveProfile()" class="space-y-6">
+      <app-form-field
+        label="Name"
+        [control]="profileForm.get('name')!"
+        [error]="getFormErrorMessage('name')"
+      >
+        <input
+          type="text"
+          formControlName="name"
+          class="w-full bg-zinc-700 border border-zinc-600 rounded-lg px-4 py-2 text-zinc-200 focus:outline-none focus:border-blue-500"
+          placeholder="Enter your name"
+        >
+      </app-form-field>
+
+      <app-form-field
+        label="Username"
+        [control]="profileForm.get('username')!"
+        [error]="getFormErrorMessage('username')"
+      >
+        <input
+          type="text"
+          formControlName="username"
+          class="w-full bg-zinc-700 border border-zinc-600 rounded-lg px-4 py-2 text-zinc-200 focus:outline-none focus:border-blue-500"
+          placeholder="Choose a username"
+        >
+      </app-form-field>
+
+      <app-form-field
+        label="Email"
+        [control]="profileForm.get('email')!"
+        [error]="getFormErrorMessage('email')"
+      >
+        <input
+          type="email"
+          formControlName="email"
+          class="w-full bg-zinc-700 border border-zinc-600 rounded-lg px-4 py-2 text-zinc-200 focus:outline-none focus:border-blue-500"
+          placeholder="Enter your email"
+        >
+      </app-form-field>
+
+      <app-form-field
+        label="Bio"
+        [control]="profileForm.get('bio')!"
+        [error]="getFormErrorMessage('bio')"
+      >
+        <textarea
+          formControlName="bio"
+          class="w-full bg-zinc-700 border border-zinc-600 rounded-lg px-4 py-2 text-zinc-200 focus:outline-none focus:border-blue-500 resize-none h-32"
+          placeholder="Tell us about yourself"
+        ></textarea>
+      </app-form-field>
+
+      <app-form-field
+        label="Favorite Genres"
+        [control]="profileForm.get('favoriteGenres')!"
+        [error]="getFormErrorMessage('favoriteGenres')"
+      >
+        <input
+          type="text"
+          formControlName="favoriteGenres"
+          class="w-full bg-zinc-700 border border-zinc-600 rounded-lg px-4 py-2 text-zinc-200 focus:outline-none focus:border-blue-500"
+          placeholder="Enter genres separated by commas (e.g., Rock, Jazz, Blues)"
+        >
+      </app-form-field>
+
+      <div *ngIf="error" class="mb-4 p-3 bg-red-500 bg-opacity-10 border border-red-500 rounded-lg text-red-500 text-sm">
+        {{ error }}
+      </div>
+
+      <div class="flex justify-end gap-4">
+        <button
+          type="button"
+          (click)="closeEditDrawer()"
+          class="px-4 py-2 bg-zinc-700 text-zinc-100 rounded-lg hover:bg-zinc-600 transition-colors"
+        >
+          Cancel
+        </button>
+        <button
+          type="submit"
+          class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          [disabled]="!profileForm.valid || isLoading"
+        >
+          {{ isLoading ? 'Saving...' : 'Save Changes' }}
+        </button>
+      </div>
+    </form>
+  </div>
+</app-drawer>

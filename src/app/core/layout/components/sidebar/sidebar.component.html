@@ -1,0 +1,76 @@
+<aside class="h-full w-64 bg-zinc-950 border-r border-zinc-800">
+    <div class="flex flex-col h-full">
+        <!-- Logo -->
+        <div class="p-4">
+            <h1 class="text-2xl font-bold text-zinc-200">Band Hub</h1>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="flex-1 px-2">
+            <div class="space-y-1">
+                <!-- Music Lists -->
+                <ul class="space-y-1">
+                    <li *ngFor="let item of navigationItems; trackBy: trackByRoute">
+                        <a [routerLink]="item.route"
+                           routerLinkActive="bg-zinc-800"
+                           [routerLinkActiveOptions]="{exact: item.route === '/'}"
+                           class="flex items-center px-2 py-2 text-sm font-medium rounded-md text-zinc-100 hover:bg-zinc-800 group">
+                            <i [class]="item.icon + ' mr-3 text-zinc-400 group-hover:text-zinc-300'"></i>
+                            {{ item.label }}
+                        </a>
+                    </li>
+                </ul>
+
+                <!-- Additional Navigation -->
+                <a routerLink="/explore" routerLinkActive="bg-zinc-800"
+                   class="flex items-center px-2 py-2 text-sm font-medium rounded-md text-zinc-100 hover:bg-zinc-800 group">
+                    <span class="material-icons mr-3 text-zinc-400 group-hover:text-zinc-300">explore</span>
+                    Explore
+                </a>
+                <a routerLink="/bands" routerLinkActive="bg-zinc-800"
+                   class="flex items-center px-2 py-2 text-sm font-medium rounded-md text-zinc-100 hover:bg-zinc-800 group">
+                    <span class="material-icons mr-3 text-zinc-400 group-hover:text-zinc-300">group</span>
+                    Bands
+                </a>
+                <a routerLink="/artists" routerLinkActive="bg-zinc-800"
+                   class="flex items-center px-2 py-2 text-sm font-medium rounded-md text-zinc-100 hover:bg-zinc-800 group">
+                    <span class="material-icons mr-3 text-zinc-400 group-hover:text-zinc-300">person</span>
+                    Artists
+                </a>
+            </div>
+
+            <!-- User Profile -->
+            <div class="mt-8" *ngIf="isAuthenticated$ | async">
+                <div class="px-3 text-sm font-semibold text-zinc-400">User Profile</div>
+                <div class="mt-2 space-y-1">
+                    <a routerLink="/profile"
+                       class="flex items-center px-3 py-2 text-sm font-medium rounded-md text-zinc-100 hover:bg-zinc-800">
+                        <div class="relative w-8 h-8">
+                            <ng-container *ngIf="(user$ | async)?.image; else initialsTemplate">
+                                <img [src]="(user$ | async)?.image" [alt]="(user$ | async)?.name" class="w-full h-full rounded-full">
+                            </ng-container>
+                            <ng-template #initialsTemplate>
+                                <div class="w-full h-full rounded-full bg-indigo-600 flex items-center justify-center text-white text-lg">
+                                    {{ getUserInitial(user$ | async) }}
+                                </div>
+                            </ng-template>
+                        </div>
+                        <div class="ml-3">
+                            <p class="text-sm font-medium text-zinc-100">{{ getUserName(user$ | async) }}</p>
+                            <p class="text-xs text-zinc-400">{{ (user$ | async)?.email }}</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Logout Button -->
+            <div class="mt-8" *ngIf="isAuthenticated$ | async">
+                <button (click)="logout()"
+                        class="w-full flex items-center px-3 py-2 text-sm font-medium rounded-md text-zinc-100 hover:bg-zinc-800">
+                    <span class="material-icons mr-3 text-zinc-400 group-hover:text-zinc-300">logout</span>
+                    Logout
+                </button>
+            </div>
+        </nav>
+    </div>
+</aside>

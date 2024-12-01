@@ -1,0 +1,85 @@
+<div class="space-y-8">
+  <!-- Welcome Section -->
+  <section class="mb-8">
+    <div class="bg-gradient-to-b from-indigo-800/40 to-zinc-950 rounded-lg p-6">
+      <h1 class="text-3xl font-bold text-zinc-200 mb-4">Good {{ greeting }}</h1>
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
+        @for (item of recentlyPlayed$ | async; track item.id) {
+          <div class="bg-zinc-900/40 hover:bg-zinc-800/40 p-4 rounded-md flex items-center group cursor-pointer transition-all"
+               (click)="onItemClick(item)">
+            <img [src]="item.image || '/assets/images/default-cover.svg'" 
+                 [alt]="item.name" 
+                 class="w-12 h-12 rounded shadow-lg">
+            <h3 class="ml-4 font-medium text-zinc-200 group-hover:text-white truncate">{{ item.name }}</h3>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Made For You -->
+  <section class="mb-8 bg-zinc-900/20 rounded-lg p-6">
+    <div class="flex items-center justify-between mb-4">
+      <h2 class="text-2xl font-bold text-zinc-200">Made For You</h2>
+      <a routerLink="/made-for-you" class="text-sm font-bold text-zinc-400 hover:text-zinc-200 uppercase tracking-wider">
+        Show all
+      </a>
+    </div>
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-4">
+      @for (album of albums$ | async; track album.id) {
+        <app-card [item]="album" type="album"></app-card>
+      }
+    </div>
+  </section>
+
+  <!-- Popular Artists -->
+  <section class="mb-8 bg-zinc-900/20 rounded-lg p-6">
+    <div class="flex items-center justify-between mb-4">
+      <h2 class="text-2xl font-bold text-zinc-200">Popular Artists</h2>
+      <a routerLink="/artists" class="text-sm font-bold text-zinc-400 hover:text-zinc-200 uppercase tracking-wider">
+        Show all
+      </a>
+    </div>
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-4">
+      @for (artist of artists$ | async; track artist.id) {
+        <app-card [item]="artist" type="artist"></app-card>
+      }
+    </div>
+  </section>
+
+  <!-- Featured Bands -->
+  <section class="mb-8 bg-zinc-900/20 rounded-lg p-6">
+    <div class="flex items-center justify-between mb-4">
+      <h2 class="text-2xl font-bold text-zinc-200">Featured Bands</h2>
+      <a routerLink="/bands" class="text-sm font-bold text-zinc-400 hover:text-zinc-200 uppercase tracking-wider">
+        Show all
+      </a>
+    </div>
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-4">
+      @for (band of bands$ | async; track band.id) {
+        <app-card [item]="band" type="band"></app-card>
+      }
+    </div>
+  </section>
+
+  <!-- Browse by Genre -->
+  <section class="mb-8 bg-zinc-900/20 rounded-lg p-6">
+    <div class="flex items-center justify-between mb-4">
+      <h2 class="text-2xl font-bold text-zinc-200">Browse by Genre</h2>
+      <a routerLink="/genres" class="text-sm font-bold text-zinc-400 hover:text-zinc-200 uppercase tracking-wider">
+        Show all
+      </a>
+    </div>
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-4">
+      @for (genre of genres$ | async; track genre.id) {
+        <div class="bg-zinc-800/50 hover:bg-zinc-700/50 p-4 rounded-lg cursor-pointer transition-colors"
+             [style.background-color]="genre.color">
+          <h3 class="text-lg font-medium text-zinc-200">{{ genre.name }}</h3>
+          <img [src]="genre.image || '/assets/images/default-genre.svg'" 
+               [alt]="genre.name" 
+               class="w-full h-32 object-cover rounded mt-2">
+        </div>
+      }
+    </div>
+  </section>
+</div>

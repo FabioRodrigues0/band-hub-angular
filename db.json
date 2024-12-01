@@ -1,0 +1,398 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Admin User",
+      "email": "admin@example.com",
+      "password": "hashed_password_here",
+      "role": "admin",
+      "profile": {
+        "id": 1,
+        "name": "Admin User",
+        "username": "admin",
+        "bio": "System administrator and music enthusiast",
+        "image": "/assets/images/default-artist.svg",
+        "favoriteGenres": ["Rock", "Jazz", "Classical"],
+        "followers": 1234,
+        "following": 567,
+        "playlists": 23,
+        "socialLinks": {
+          "spotify": "spotify.com/admin",
+          "instagram": "instagram.com/admin",
+          "twitter": "twitter.com/admin"
+        }
+      },
+      "createdAt": "2024-01-01T00:00:00Z",
+      "updatedAt": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": 2,
+      "name": "Regular User",
+      "email": "user@example.com",
+      "password": "hashed_password_here",
+      "role": "user",
+      "profile": {
+        "id": 2,
+        "name": "Regular User",
+        "username": "user",
+        "bio": "Music lover and aspiring artist",
+        "image": "/assets/images/default-artist.svg",
+        "favoriteGenres": ["Pop", "Hip Hop", "Electronic"],
+        "followers": 456,
+        "following": 789,
+        "playlists": 12,
+        "socialLinks": {
+          "spotify": "spotify.com/user",
+          "instagram": "instagram.com/user"
+        }
+      },
+      "createdAt": "2024-01-01T00:00:00Z",
+      "updatedAt": "2024-01-01T00:00:00Z"
+    }
+  ],
+  "bands": [
+    {
+      "id": 1,
+      "name": "Nirvana",
+      "image": "/assets/images/default-artist.svg",
+      "description": "American rock band formed in Aberdeen, Washington",
+      "members": [
+        {
+          "id": 2,
+          "name": "Kurt Cobain",
+          "image": "/assets/images/default-artist.svg",
+          "genres": ["Grunge", "Alternative Rock"],
+          "description": "Lead singer and guitarist",
+          "slug": "kurt-cobain",
+          "instruments": ["Guitar", "Vocals"]
+        }
+      ],
+      "slug": "nirvana",
+      "genres": ["Grunge", "Alternative Rock"],
+      "albums": [1],
+      "formed": 1987
+    },
+    {
+      "id": 2,
+      "name": "Pink Floyd",
+      "image": "/assets/images/default-artist.svg",
+      "description": "Legendary progressive rock band known for their innovative sound and conceptual albums",
+      "members": [
+        {
+          "id": 3,
+          "name": "Roger Waters",
+          "image": "/assets/images/default-artist.svg",
+          "genres": ["Progressive Rock", "Psychedelic Rock"],
+          "description": "Co-founder, bassist, and lyricist",
+          "slug": "roger-waters",
+          "instruments": ["Bass", "Vocals"]
+        },
+        {
+          "id": 4,
+          "name": "David Gilmour",
+          "image": "/assets/images/default-artist.svg",
+          "genres": ["Progressive Rock", "Psychedelic Rock"],
+          "description": "Lead guitarist and vocalist",
+          "slug": "david-gilmour",
+          "instruments": ["Guitar", "Vocals"]
+        }
+      ],
+      "slug": "pink-floyd",
+      "genres": ["Progressive Rock", "Psychedelic Rock", "Art Rock"],
+      "albums": [2, 4],
+      "formed": 1965
+    },
+    {
+      "id": 3,
+      "name": "Foo Fighters",
+      "image": "/assets/images/default-artist.svg",
+      "description": "American rock band formed by former Nirvana drummer Dave Grohl",
+      "members": [
+        {
+          "id": 1,
+          "name": "Dave Grohl",
+          "image": "/assets/images/default-artist.svg",
+          "genres": ["Alternative Rock", "Post-Grunge"],
+          "description": "Founder, lead vocalist, and guitarist",
+          "slug": "dave-grohl",
+          "instruments": ["Guitar", "Vocals", "Drums"]
+        }
+      ],
+      "slug": "foo-fighters",
+      "genres": ["Alternative Rock", "Post-Grunge"],
+      "albums": [3],
+      "formed": 1994
+    }
+  ],
+  "artists": [
+    {
+      "id": 1,
+      "name": "Dave Grohl",
+      "image": "/assets/images/default-artist.svg",
+      "genres": ["Rock", "Alternative Rock", "Grunge"],
+      "description": "Former drummer of Nirvana and founder of Foo Fighters",
+      "slug": "dave-grohl",
+      "birthDate": "1969-01-14",
+      "instruments": ["Drums", "Guitar", "Vocals"],
+      "bands": [3],
+      "albums": [3]
+    },
+    {
+      "id": 2,
+      "name": "Kurt Cobain",
+      "image": "/assets/images/default-artist.svg",
+      "genres": ["Grunge", "Alternative Rock"],
+      "description": "Lead singer and guitarist of Nirvana",
+      "slug": "kurt-cobain",
+      "birthDate": "1967-02-20",
+      "instruments": ["Guitar", "Vocals"],
+      "bands": [1],
+      "albums": [1]
+    },
+    {
+      "id": 3,
+      "name": "Roger Waters",
+      "image": "/assets/images/default-artist.svg",
+      "genres": ["Progressive Rock", "Psychedelic Rock"],
+      "description": "Co-founder, bassist, and lyricist of Pink Floyd",
+      "slug": "roger-waters",
+      "birthDate": "1943-09-06",
+      "instruments": ["Bass", "Vocals"],
+      "bands": [2],
+      "albums": [2, 4]
+    },
+    {
+      "id": 4,
+      "name": "David Gilmour",
+      "image": "/assets/images/default-artist.svg",
+      "genres": ["Progressive Rock", "Psychedelic Rock"],
+      "description": "Lead guitarist and vocalist of Pink Floyd",
+      "slug": "david-gilmour",
+      "birthDate": "1946-03-06",
+      "instruments": ["Guitar", "Vocals"],
+      "bands": [2],
+      "albums": [2, 4]
+    }
+  ],
+  "albums": [
+    {
+      "id": 1,
+      "name": "Nevermind",
+      "description": "Second studio album by Nirvana, featuring iconic tracks like \"Smells Like Teen Spirit\"",
+      "image": "/assets/images/default-album.svg",
+      "releaseDate": "1991-09-24",
+      "yearRelease": 1991,
+      "artists": [2],
+      "tracks": [1],
+      "slug": "nevermind",
+      "genres": ["Grunge", "Alternative Rock"],
+      "coverImage": "/assets/images/default-album.svg",
+      "band": {
+        "id": 1,
+        "name": "Nirvana",
+        "image": "/assets/images/default-artist.svg"
+      }
+    },
+    {
+      "id": 2,
+      "name": "The Dark Side of the Moon",
+      "description": "Eighth studio album by Pink Floyd, one of the best-selling albums of all time",
+      "image": "/assets/images/default-album.svg",
+      "releaseDate": "1973-03-01",
+      "yearRelease": 1973,
+      "artists": [3, 4],
+      "tracks": [2],
+      "slug": "the-dark-side-of-the-moon",
+      "genres": ["Progressive Rock", "Psychedelic Rock"],
+      "coverImage": "/assets/images/default-album.svg",
+      "band": {
+        "id": 2,
+        "name": "Pink Floyd",
+        "image": "/assets/images/default-artist.svg"
+      }
+    },
+    {
+      "id": 3,
+      "name": "The Colour and the Shape",
+      "description": "Second studio album by Foo Fighters",
+      "image": "/assets/images/default-album.svg",
+      "releaseDate": "1997-05-20",
+      "yearRelease": 1997,
+      "artists": [1],
+      "tracks": [3],
+      "slug": "the-colour-and-the-shape",
+      "genres": ["Alternative Rock", "Post-Grunge"],
+      "coverImage": "/assets/images/default-album.svg",
+      "band": {
+        "id": 3,
+        "name": "Foo Fighters",
+        "image": "/assets/images/default-artist.svg"
+      }
+    },
+    {
+      "id": 4,
+      "name": "The Wall",
+      "description": "Eleventh studio album by Pink Floyd",
+      "image": "/assets/images/default-album.svg",
+      "releaseDate": "1979-11-30",
+      "yearRelease": 1979,
+      "artists": [3, 4],
+      "tracks": [4],
+      "slug": "the-wall",
+      "genres": ["Progressive Rock", "Art Rock"],
+      "coverImage": "/assets/images/default-album.svg",
+      "band": {
+        "id": 2,
+        "name": "Pink Floyd",
+        "image": "/assets/images/default-artist.svg"
+      }
+    }
+  ],
+  "tracks": [
+    {
+      "id": 1,
+      "name": "Smells Like Teen Spirit",
+      "artists": [2],
+      "duration": "5:01",
+      "genres": ["Grunge", "Alternative Rock"],
+      "album": {
+        "id": 1,
+        "name": "Nevermind",
+        "image": "/assets/images/default-album.svg"
+      },
+      "audioUrl": "/assets/audio/smells-like-teen-spirit.mp3",
+      "slug": "smells-like-teen-spirit",
+      "description": "Lead single from Nevermind, became a defining anthem of Generation X"
+    },
+    {
+      "id": 2,
+      "name": "Money",
+      "artists": [3, 4],
+      "duration": "6:22",
+      "genres": ["Progressive Rock", "Psychedelic Rock"],
+      "album": {
+        "id": 2,
+        "name": "The Dark Side of the Moon",
+        "image": "/assets/images/default-album.svg"
+      },
+      "audioUrl": "/assets/audio/money.mp3",
+      "slug": "money",
+      "description": "Progressive rock song known for its iconic 7/4 time signature and cash register sounds"
+    },
+    {
+      "id": 3,
+      "name": "Everlong",
+      "artists": [1],
+      "duration": "4:10",
+      "genres": ["Alternative Rock", "Post-Grunge"],
+      "album": {
+        "id": 3,
+        "name": "The Colour and the Shape",
+        "image": "/assets/images/default-album.svg"
+      },
+      "audioUrl": "/assets/audio/everlong.mp3",
+      "slug": "everlong",
+      "description": "One of Foo Fighters' most popular songs, known for its dynamic shifts and emotional depth"
+    },
+    {
+      "id": 4,
+      "name": "Another Brick in the Wall, Part 2",
+      "artists": [3, 4],
+      "duration": "3:59",
+      "genres": ["Progressive Rock", "Art Rock"],
+      "album": {
+        "id": 4,
+        "name": "The Wall",
+        "image": "/assets/images/default-album.svg"
+      },
+      "audioUrl": "/assets/audio/another-brick-in-the-wall.mp3",
+      "slug": "another-brick-in-the-wall-part-2",
+      "description": "Iconic protest song against rigid schooling, featuring a children's choir"
+    }
+  ],
+  "genres": [
+    {
+      "id": 1,
+      "name": "Rock",
+      "color": "#FF5733",
+      "image": "/assets/images/genres/rock.svg"
+    },
+    {
+      "id": 2,
+      "name": "Jazz",
+      "color": "#33FF57",
+      "image": "/assets/images/genres/jazz.svg"
+    },
+    {
+      "id": 3,
+      "name": "Grunge",
+      "color": "#3357FF",
+      "image": "/assets/images/genres/grunge.svg"
+    },
+    {
+      "id": 4,
+      "name": "Alternative Rock",
+      "color": "#FF33F5",
+      "image": "/assets/images/genres/alternative-rock.svg"
+    },
+    {
+      "id": 5,
+      "name": "Progressive Rock",
+      "color": "#33FFF5",
+      "image": "/assets/images/genres/progressive-rock.svg"
+    },
+    {
+      "id": 6,
+      "name": "Psychedelic Rock",
+      "color": "#F5FF33",
+      "image": "/assets/images/genres/psychedelic-rock.svg"
+    },
+    {
+      "id": 7,
+      "name": "Art Rock",
+      "color": "#FF3333",
+      "image": "/assets/images/genres/art-rock.svg"
+    },
+    {
+      "id": 8,
+      "name": "Post-Grunge",
+      "color": "#33FF33",
+      "image": "/assets/images/genres/post-grunge.svg"
+    }
+  ],
+  "playlists": [
+    {
+      "id": 1,
+      "title": "My Favorites",
+      "description": "A collection of my favorite tracks",
+      "coverImage": "/assets/images/default-playlist.svg",
+      "user_id": 1,
+      "tracks": [1, 2, 3, 4],
+      "isPublic": true,
+      "createdAt": "2024-01-01T00:00:00Z",
+      "updatedAt": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": 2,
+      "title": "Rock Classics",
+      "description": "The best rock songs of all time",
+      "coverImage": "/assets/images/default-playlist.svg",
+      "user_id": 2,
+      "tracks": [1, 3],
+      "isPublic": true,
+      "createdAt": "2024-01-01T00:00:00Z",
+      "updatedAt": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": 3,
+      "title": "Progressive Rock Collection",
+      "description": "A journey through progressive rock",
+      "coverImage": "/assets/images/default-playlist.svg",
+      "user_id": 1,
+      "tracks": [2, 4],
+      "isPublic": false,
+      "createdAt": "2024-01-01T00:00:00Z",
+      "updatedAt": "2024-01-01T00:00:00Z"
+    }
+  ]
+}
