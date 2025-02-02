@@ -1,0 +1,79 @@
+.profile-container {
+  @apply max-w-7xl mx-auto px-4 py-8;
+
+  .profile-header {
+    @apply flex flex-col md:flex-row gap-8 mb-12;
+
+    .profile-image {
+      @apply w-48 h-48 rounded-full object-cover;
+    }
+
+    .profile-info {
+      @apply flex-1;
+
+      .profile-name {
+        @apply text-3xl font-bold text-zinc-200 mb-2;
+      }
+
+      .profile-bio {
+        @apply text-lg text-zinc-400 mb-4;
+      }
+
+      .profile-genres {
+        @apply text-sm text-zinc-500;
+      }
+    }
+  }
+
+  .profile-content {
+    @apply grid grid-cols-1 md:grid-cols-2 gap-8;
+
+    .section-title {
+      @apply text-2xl font-bold text-zinc-200 mb-6;
+    }
+  }
+}
+
+.edit-drawer {
+  @apply fixed top-0 right-0 h-full w-full md:w-96 bg-zinc-900 shadow-lg p-6 transform transition-transform duration-300;
+
+  &.closed {
+    @apply translate-x-full;
+  }
+
+  .drawer-header {
+    @apply flex justify-between items-center mb-6;
+
+    .drawer-title {
+      @apply text-xl font-bold text-zinc-200;
+    }
+
+    .close-button {
+      @apply text-zinc-400 hover:text-zinc-200;
+    }
+  }
+
+  .form-group {
+    @apply mb-4;
+
+    label {
+      @apply block text-sm font-medium text-zinc-400 mb-2;
+    }
+
+    input, textarea {
+      @apply w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-2 text-zinc-200;
+
+      &:focus {
+        @apply outline-none border-blue-500;
+      }
+    }
+
+    textarea {
+      @apply h-32 resize-none;
+    }
+  }
+
+  .save-button {
+    @apply w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-colors;
+  }
+}

@@ -1,0 +1,19 @@
+<div class="min-h-screen flex bg-zinc-950">
+  <!-- Fixed Container for Sidebar -->
+  <div class="fixed inset-y-0 left-0 z-50 bg-zinc-950">
+    <app-sidebar></app-sidebar>
+  </div>
+
+  <!-- Main Content Container -->
+  <div class="flex-1 pl-64 bg-zinc-950">
+    <main class="min-h-screen bg-zinc-950">
+      <!-- Header -->
+      <app-header></app-header>
+
+      <!-- Page Content -->
+      <div class="p-6">
+        <router-outlet></router-outlet>
+      </div>
+    </main>
+  </div>
+</div>

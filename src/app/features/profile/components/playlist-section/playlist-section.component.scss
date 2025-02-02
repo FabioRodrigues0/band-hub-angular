@@ -1,0 +1,20 @@
+// Add any specific styles for the playlist section component here
+.cdk-drag-preview {
+  @apply bg-zinc-900 p-2 rounded flex items-center gap-3 shadow-lg;
+}
+
+.cdk-drag-placeholder {
+  @apply opacity-0;
+}
+
+.cdk-drag-animating {
+  @apply transition-transform;
+}
+
+.cdk-drop-list-dragging .cdk-drag {
+  @apply transition-transform;
+}
+
+.cdk-drop-list-dragging .cdk-drag-placeholder {
+  @apply transition-transform;
+}

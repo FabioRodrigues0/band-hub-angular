@@ -1,0 +1,108 @@
+<aside class="h-full w-64 bg-zinc-950 border-r border-zinc-800">
+    <div class="flex flex-col h-full">
+        <!-- Logo -->
+        <div class="p-4">
+            <h1 class="text-2xl font-bold text-zinc-200">Band Hub</h1>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="flex-1 px-2">
+          <ul class="space-y-1">
+            <li *ngFor="let item of navigationItems">
+              <ng-container *ngIf="!item.subItems">
+                <a 
+                  [routerLink]="item.route"
+                  routerLinkActive="bg-zinc-800"
+                  [routerLinkActiveOptions]="{exact: item.route === '/'}"
+                  class="flex items-center px-2 py-2 text-sm font-medium rounded-md text-zinc-100 hover:bg-zinc-800 group"
+                >
+                  <i [class]="item.icon + ' mr-3 text-zinc-400 group-hover:text-zinc-300'"></i>
+                  {{ item.label }}
+                </a>
+              </ng-container>
+              
+              <ng-container *ngIf="item.subItems">
+                <div class="accordion-item">
+                  <div 
+                    (click)="item.isOpen = !item.isOpen"
+                    class="flex items-center px-2 py-2 text-sm font-medium rounded-md text-zinc-100 hover:bg-zinc-800 cursor-pointer group"
+                  >
+                    <i [class]="item.icon + ' mr-3 text-zinc-400 group-hover:text-zinc-300'"></i>
+                    {{ item.label }}
+                    <i 
+                      class="ml-auto transition-transform duration-300 ease-in-out"
+                      [class.rotate-180]="item.isOpen"
+                      [class]="(item.isOpen ? 'ri-arrow-up-s-line' : 'ri-arrow-down-s-line') + ' text-zinc-400 group-hover:text-zinc-300'"
+                    ></i>
+                  </div>
+                  
+                  <div 
+                    *ngIf="item.isOpen"
+                    class="pl-4 py-2 space-y-1 bg-zinc-800/50 rounded-md"
+                  >
+                    <a 
+                      *ngFor="let subItem of item.subItems"
+                      [routerLink]="subItem.route"
+                      [queryParams]="subItem.routeData"
+                      routerLinkActive="bg-zinc-700"
+                      class="block px-2 py-1 text-sm text-zinc-100 hover:bg-zinc-700 rounded-md"
+                    >
+                      <i [class]="subItem.icon + ' mr-2 text-zinc-400'"></i>
+                      {{ subItem.label }}
+                    </a>
+                  </div>
+                </div>
+              </ng-container>
+            </li>
+          </ul>
+        </nav>
+
+        <!-- User Profile -->
+        <div class="mt-8" *ngIf="isAuthenticated$ | async">
+            <div class="p-4 border-b border-zinc-800">
+                <ng-container *ngIf="user$ | async as user">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-full overflow-hidden bg-zinc-800">
+                            <img *ngIf="getUserProfileImage(user)" [src]="getUserProfileImage(user)" [alt]="getUserProfileName(user)"
+                                 class="w-full h-full object-cover">
+                            <div *ngIf="!getUserProfileImage(user)"
+                                 class="w-full h-full flex items-center justify-center text-xl font-bold text-zinc-400">
+                                {{ getUserProfileInitial(user) }}
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <div class="text-sm font-medium text-zinc-100">{{ getUserProfileName(user) }}</div>
+                            <div class="text-xs text-zinc-500">{{ getUserProfileUsername(user) }}</div>
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+
+            <div class="mt-2 space-y-1">
+                <a routerLink="/profile"
+                   class="flex items-center px-2 py-2 text-sm font-medium rounded-md text-zinc-100 hover:bg-zinc-800 group">
+                    <div class="w-8 h-8 rounded-full overflow-hidden bg-zinc-800 mr-3">
+                        <ng-container *ngIf="user$ | async as user">
+                            <img *ngIf="getUserProfileImage(user)" [src]="getUserProfileImage(user)" [alt]="getUserProfileName(user)"
+                                 class="w-full h-full object-cover">
+                            <div *ngIf="!getUserProfileImage(user)"
+                                 class="w-full h-full flex items-center justify-center bg-zinc-700 text-zinc-300">
+                                {{ getUserProfileInitial(user) }}
+                            </div>
+                        </ng-container>
+                    </div>
+                    <span>{{ getUserProfileName((user$ | async)) }}</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Logout Button -->
+        <div class="mt-8" *ngIf="isAuthenticated$ | async">
+            <button (click)="logout()"
+                    class="w-full flex items-center px-3 py-2 text-sm font-medium rounded-md text-zinc-100 hover:bg-zinc-800">
+                <span class="material-icons mr-3 text-zinc-400 group-hover:text-zinc-300">logout</span>
+                Logout
+            </button>
+        </div>
+    </div>
+</aside>

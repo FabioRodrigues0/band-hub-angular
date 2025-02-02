@@ -1,0 +1,44 @@
+/* Details Component Styles */
+.details-container {
+  @apply bg-zinc-900 min-h-screen p-6;
+}
+
+.details-header {
+  @apply flex items-center mb-8;
+}
+
+.details-title {
+  @apply text-3xl font-bold text-zinc-100;
+}
+
+.details-image {
+  @apply w-full max-h-96 object-cover rounded-lg mb-6;
+}
+
+.details-section {
+  @apply bg-zinc-800 rounded-lg p-6 mb-6;
+}
+
+.section-title {
+  @apply text-xl font-semibold text-zinc-100 mb-4;
+}
+
+.details-description {
+  @apply text-zinc-400 leading-relaxed;
+}
+
+.details-metadata {
+  @apply grid grid-cols-2 gap-4 text-zinc-300;
+}
+
+.metadata-label {
+  @apply font-medium text-zinc-500;
+}
+
+.related-items {
+  @apply grid grid-cols-1 md:grid-cols-3 gap-4;
+}
+
+.related-item {
+  @apply bg-zinc-700 rounded-lg p-4 hover:bg-zinc-600 transition-colors;
+}

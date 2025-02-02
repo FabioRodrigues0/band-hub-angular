@@ -1,0 +1,34 @@
+@use '@angular/material' as mat;
+
+// Create palettes
+$band-hub-primary: mat.define-palette(mat.$indigo-palette);
+$band-hub-accent: mat.define-palette(mat.$pink-palette);
+$band-hub-warn: mat.define-palette(mat.$red-palette);
+
+// Create themes
+$band-hub-light-theme: mat.define-light-theme((
+  color: (
+    primary: $band-hub-primary,
+    accent: $band-hub-accent,
+    warn: $band-hub-warn
+  )
+));
+
+$band-hub-dark-theme: mat.define-dark-theme((
+  color: (
+    primary: $band-hub-primary,
+    accent: $band-hub-accent,
+    warn: $band-hub-warn
+  )
+));
+
+// Include core styles
+@include mat.core();
+
+// Include theme styles for all Material components
+@include mat.all-component-themes($band-hub-light-theme);
+
+// Dark theme support
+.dark-theme {
+  @include mat.all-component-themes($band-hub-dark-theme);
+}

@@ -1,0 +1,100 @@
+/* List Component Styles */
+.list-container {
+  @apply bg-zinc-900 min-h-screen p-6;
+}
+
+.list-header {
+  @apply text-2xl font-bold text-zinc-100 mb-6;
+}
+
+.list-grid {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6;
+}
+
+.list-item {
+  @apply bg-zinc-800 rounded-lg p-4 hover:bg-zinc-700 transition-colors;
+}
+
+.list-item-title {
+  @apply text-zinc-100 font-semibold text-lg truncate;
+}
+
+.list-item-description {
+  @apply text-zinc-400 text-sm mt-2;
+}
+
+:host {
+  display: block;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.list-container {
+  padding: 20px;
+}
+
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+}
+
+.error-message {
+  color: #f44336;
+  text-align: center;
+  padding: 20px;
+  font-size: 1.2rem;
+}
+
+mat-form-field {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+mat-table {
+  width: 100%;
+  
+  .mat-column-actions {
+    flex: 0 0 100px;
+    justify-content: center;
+  }
+}
+
+mat-paginator {
+  margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+  mat-table {
+    overflow-x: auto;
+    display: block;
+    width: 100%;
+  }
+}
+
+// Zebra striping for table rows
+.mat-row:nth-child(even) {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+// Hover effect for table rows
+.mat-row:hover {
+  background-color: rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+}
+
+// Responsive adjustments
+@media (max-width: 600px) {
+  mat-table {
+    font-size: 0.8rem;
+  }
+  
+  mat-paginator {
+    .mat-paginator-page-size,
+    .mat-paginator-range-label {
+      display: none;
+    }
+  }
+}

@@ -1,0 +1,276 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Admin User",
+      "slug": "admin-user",
+      "image": "/assets/images/default-artist.svg",
+      "email": "admin@example.com",
+      "password": "hashed_password_here",
+      "user_type": "admin",
+      "email_verified_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": 2,
+      "name": "Regular User",
+      "slug": "regular-user",
+      "image": "/assets/images/default-artist.svg",
+      "email": "user@example.com",
+      "password": "hashed_password_here",
+      "user_type": "user",
+      "email_verified_at": "2024-01-01T00:00:00Z"
+    }
+  ],
+  "bands": [
+    {
+      "id": 1,
+      "name": "Nirvana",
+      "slug": "nirvana",
+      "description": "American rock band formed in Aberdeen, Washington",
+      "image": "/assets/images/default-artist.svg",
+      "genres": ["Grunge", "Alternative Rock"],
+      "artists": [
+        { "id": 2, "name": "Kurt Cobain", "slug": "kurt-cobain", "image": "/assets/images/default-artist.svg" }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Pink Floyd",
+      "slug": "pink-floyd",
+      "description": "Legendary progressive rock band known for their innovative sound and conceptual albums",
+      "image": "/assets/images/default-artist.svg",
+      "genres": ["Progressive Rock", "Psychedelic Rock", "Art Rock"],
+      "artists": [
+        { "id": 3, "name": "Roger Waters", "slug": "roger-waters", "image": "/assets/images/default-artist.svg" },
+        { "id": 4, "name": "David Gilmour", "slug": "david-gilmour", "image": "/assets/images/default-artist.svg" }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Foo Fighters",
+      "slug": "foo-fighters",
+      "description": "American rock band formed by former Nirvana drummer Dave Grohl",
+      "image": "/assets/images/default-artist.svg",
+      "genres": ["Alternative Rock", "Post-Grunge"],
+      "artists": [
+        { "id": 1, "name": "Dave Grohl", "slug": "dave-grohl", "image": "/assets/images/default-artist.svg" }
+      ]
+    }
+  ],
+  "artists": [
+    {
+      "id": 1,
+      "name": "Dave Grohl",
+      "slug": "dave-grohl",
+      "description": "Former drummer of Nirvana and founder of Foo Fighters",
+      "image": "/assets/images/default-artist.svg",
+      "bands": [
+        { "id": 3, "name": "Foo Fighters", "slug": "foo-fighters", "image": "/assets/images/default-artist.svg" }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Kurt Cobain",
+      "slug": "kurt-cobain",
+      "description": "Lead singer and guitarist of Nirvana",
+      "image": "/assets/images/default-artist.svg",
+      "bands": [
+        { "id": 1, "name": "Nirvana", "slug": "nirvana", "image": "/assets/images/default-artist.svg" }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Roger Waters",
+      "slug": "roger-waters",
+      "description": "Co-founder, bassist, and lyricist of Pink Floyd",
+      "image": "/assets/images/default-artist.svg",
+      "bands": [
+        { "id": 2, "name": "Pink Floyd", "slug": "pink-floyd", "image": "/assets/images/default-artist.svg" }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "David Gilmour",
+      "slug": "david-gilmour",
+      "description": "Lead guitarist and vocalist of Pink Floyd",
+      "image": "/assets/images/default-artist.svg",
+      "bands": [
+        { "id": 2, "name": "Pink Floyd", "slug": "pink-floyd", "image": "/assets/images/default-artist.svg" }
+      ]
+    }
+  ],
+  "tracks": [
+    {
+      "id": 1,
+      "name": "Smells Like Teen Spirit",
+      "slug": "smells-like-teen-spirit",
+      "image": "/assets/images/default-album.svg",
+      "duration": 301,
+      "description": "Lead single from Nevermind, became a defining anthem of Generation X",
+      "album": {
+        "id": 1,
+        "name": "Nevermind",
+        "slug": "nevermind",
+        "image": "/assets/images/default-album.svg"
+      }
+    },
+    {
+      "id": 2,
+      "name": "Money",
+      "slug": "money",
+      "image": "/assets/images/default-album.svg",
+      "duration": 382,
+      "description": "Progressive rock song known for its iconic 7/4 time signature and cash register sounds",
+      "album": {
+        "id": 2,
+        "name": "The Dark Side of the Moon",
+        "slug": "the-dark-side-of-the-moon",
+        "image": "/assets/images/default-album.svg"
+      }
+    },
+    {
+      "id": 3,
+      "name": "Everlong",
+      "slug": "everlong",
+      "image": "/assets/images/default-album.svg",
+      "duration": 250,
+      "description": "One of Foo Fighters' most popular songs, known for its dynamic shifts and emotional depth",
+      "album": {
+        "id": 3,
+        "name": "The Colour and the Shape",
+        "slug": "the-colour-and-the-shape",
+        "image": "/assets/images/default-album.svg"
+      }
+    },
+    {
+      "id": 4,
+      "name": "Another Brick in the Wall, Part 2",
+      "slug": "another-brick-in-the-wall-part-2",
+      "image": "/assets/images/default-album.svg",
+      "duration": 239,
+      "description": "Iconic protest song against rigid schooling, featuring a children's choir",
+      "album": {
+        "id": 4,
+        "name": "The Wall",
+        "slug": "the-wall",
+        "image": "/assets/images/default-album.svg"
+      }
+    }
+  ],
+  "albums": [
+    {
+      "id": 1,
+      "name": "Nevermind",
+      "slug": "nevermind",
+      "description": "Second studio album by Nirvana, featuring iconic tracks like \"Smells Like Teen Spirit\"",
+      "image": "/assets/images/default-album.svg",
+      "year_release": 1991,
+      "artists": [
+        { "id": 2, "name": "Kurt Cobain", "slug": "kurt-cobain", "image": "/assets/images/default-artist.svg" }
+      ],
+      "band": { "id": 1, "name": "Nirvana", "slug": "nirvana", "image": "/assets/images/default-artist.svg" },
+      "tracks": [
+        {
+          "id": 1,
+          "name": "Smells Like Teen Spirit",
+          "slug": "smells-like-teen-spirit",
+          "image": "/assets/images/default-album.svg",
+          "duration": 301,
+          "description": "Lead single from Nevermind, became a defining anthem of Generation X",
+          "album": {
+            "id": 1,
+            "name": "Nevermind",
+            "slug": "nevermind",
+            "image": "/assets/images/default-album.svg"
+          }
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "The Dark Side of the Moon",
+      "slug": "the-dark-side-of-the-moon",
+      "description": "Eighth studio album by Pink Floyd, one of the best-selling albums of all time",
+      "image": "/assets/images/default-album.svg",
+      "year_release": 1973,
+      "artists": [
+        { "id": 3, "name": "Roger Waters", "slug": "roger-waters", "image": "/assets/images/default-artist.svg" },
+        { "id": 4, "name": "David Gilmour", "slug": "david-gilmour", "image": "/assets/images/default-artist.svg" }
+      ],
+      "band": { "id": 2, "name": "Pink Floyd", "slug": "pink-floyd", "image": "/assets/images/default-artist.svg" },
+      "tracks": [
+        {
+          "id": 2,
+          "name": "Money",
+          "slug": "money",
+          "image": "/assets/images/default-album.svg",
+          "duration": 382,
+          "description": "Progressive rock song known for its iconic 7/4 time signature and cash register sounds",
+          "album": {
+            "id": 2,
+            "name": "The Dark Side of the Moon",
+            "slug": "the-dark-side-of-the-moon",
+            "image": "/assets/images/default-album.svg"
+          }
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "The Colour and the Shape",
+      "slug": "the-colour-and-the-shape",
+      "description": "Second studio album by Foo Fighters, featuring hits like \"Everlong\" and \"My Hero\"",
+      "image": "/assets/images/default-album.svg",
+      "year_release": 1997,
+      "artists": [
+        { "id": 1, "name": "Dave Grohl", "slug": "dave-grohl", "image": "/assets/images/default-artist.svg" }
+      ],
+      "band": { "id": 3, "name": "Foo Fighters", "slug": "foo-fighters", "image": "/assets/images/default-artist.svg" },
+      "tracks": [
+        {
+          "id": 3,
+          "name": "Everlong",
+          "slug": "everlong",
+          "image": "/assets/images/default-album.svg",
+          "duration": 250,
+          "description": "One of Foo Fighters' most popular songs, known for its dynamic shifts and emotional depth",
+          "album": {
+            "id": 3,
+            "name": "The Colour and the Shape",
+            "slug": "the-colour-and-the-shape",
+            "image": "/assets/images/default-album.svg"
+          }
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "The Wall",
+      "slug": "the-wall",
+      "description": "Eleventh studio album by Pink Floyd, a rock opera exploring themes of isolation",
+      "image": "/assets/images/default-album.svg",
+      "year_release": 1979,
+      "artists": [
+        { "id": 3, "name": "Roger Waters", "slug": "roger-waters", "image": "/assets/images/default-artist.svg" },
+        { "id": 4, "name": "David Gilmour", "slug": "david-gilmour", "image": "/assets/images/default-artist.svg" }
+      ],
+      "band": { "id": 2, "name": "Pink Floyd", "slug": "pink-floyd", "image": "/assets/images/default-artist.svg" },
+      "tracks": [
+        {
+          "id": 4,
+          "name": "Another Brick in the Wall, Part 2",
+          "slug": "another-brick-in-the-wall-part-2",
+          "image": "/assets/images/default-album.svg",
+          "duration": 239,
+          "description": "Iconic protest song against rigid schooling, featuring a children's choir",
+          "album": {
+            "id": 4,
+            "name": "The Wall",
+            "slug": "the-wall",
+            "image": "/assets/images/default-album.svg"
+          }
+        }
+      ]
+    }
+  ]
+}
